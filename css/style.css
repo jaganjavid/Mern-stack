@@ -5,3 +5,16 @@
 h3{
     color: blue;
 }
+
+p{
+    color: #3623A9;
+}
+
+/* .sub-heading{
+    color: rgb(54, 35, 169);
+} */
+
+.sub-heading{
+    color: rgba(54, 35, 169, 0.5);
+} 
+

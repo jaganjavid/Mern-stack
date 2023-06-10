@@ -1,0 +1,59 @@
+body{
+    background-color: rgb(215, 215, 215);
+    color: #555555;
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 0px;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+.box{
+    background-color: #555555;
+    color: #ffffff;
+
+    /* border-right: 5px red solid;
+    border-left: 5px red dotted;
+    border-top: 5px red double;
+    border-bottom: 5px red dashed; */
+
+    /* Same as above */
+    border: 5px red solid;
+    /* border-width: 1px;
+    border-bottom-width: 10px; */
+
+    /* padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px; */
+
+    /* FOUR PARAM = TOP, RIGHT, BOTTOM, LEFT */
+    /* padding: 20px 30px 40px 50px; */
+
+     /* TWO PARAM = TOP - BOTTOM, LEFT _ RIGHT*/
+     padding: 20px 40px;
+
+    /* Same as above */
+    /* padding: 20px; */
+    
+    /* margin-top: 20px; */
+}
+
+
+h1{
+    font-size: 50px;
+    font-weight: 700;
+    font-style: italic;
+    text-decoration: underline;
+    /* text-transform: lowercase; */
+    text-transform: uppercase;
+    /* letter-spacing: 10px; */
+    word-spacing: 50px;
+}
+
+
+
+
