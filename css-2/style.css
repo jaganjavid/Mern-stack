@@ -54,6 +54,67 @@ h1{
     word-spacing: 50px;
 }
 
+.categories{
+    border: 1px solid grey;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.categories h3{
+   text-align: center;
+}
+
+.categories ul{
+    /* list-style: square; */
+    list-style: none;
+ }
+
+.categories ul li{
+    padding-bottom: 10px;
+    border-bottom: 1px solid blue;
+}
+
+form{
+    padding: 15px;
+}
+
+.contact-form label{
+    display: block;
+}
+
+.contact-form input{
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.contact-form textarea{
+    width: 100%;
+    border-radius: 10px;
+    height: 150px;
+}
+
+.contact-form .button{
+    background-color: blue;
+    color: #ffffff;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.contact-form .button:hover{
+    background-color: #3939ff;
+}
+
+.block{
+    float: left;
+    width: 33.3%;
+    border: 1px solid grey;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
 
 
 
