@@ -31,7 +31,7 @@ header{
 
 nav{
    padding: 10px 15px;
-   background-color:#7898e6; 
+   background-color:#e8e8e8; 
 }
 
 nav ul li{
@@ -44,4 +44,55 @@ nav ul li:last-child{
    margin-left: 15px;
    margin-right: 15px; */
    margin: 0px 0px 0px 15px;
+}
+
+.banner{
+    padding: 80px 0px;
+    background-color: #5de2f1;
+}
+
+.banner-wrapper{
+    text-align: center;
+}
+
+.banner-wrapper h1,
+.banner-wrapper p{
+    margin-bottom: 15px;
+}
+
+.banner-wrapper a{
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #111111;
+    color: #ffffff;
+    border-radius: 10px;
+    transition: all .30s;
+}
+
+.banner-wrapper a:hover{
+    background-color: #ffffff;
+    color: #111111;
+}
+
+
+.box{
+    float: left;
+    width: 30%;
+    background-color: #eaeaea;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.box h4{
+    margin-bottom: 10px;
+}
+
+.clear{
+    clear: both;
+}
+
+footer{
+    padding: 80px;
+    text-align: center;
 }
