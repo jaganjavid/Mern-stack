@@ -1,0 +1,56 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.boxes{
+    display: flex;
+    justify-content: space-between;
+}
+
+.boxes>div{
+    width: 250px;
+    height: 150px;
+    background-color: blue;
+}
+
+@media only screen and (min-width: 1400px) {
+    .boxes>div:last-child{
+        background-color: rgb(249, 189, 9);
+    }
+}
+
+
+@media only screen and (min-width: 1200px) {
+    .boxes>div:nth-child(2){
+        background-color: rgb(208, 0, 255);
+    }
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .boxes>div:first-child{
+        background-color: rgb(255, 94, 0);
+    }
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .boxes>div:first-child{
+        background-color: orange;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .boxes>div:nth-child(2){
+        background-color: rgb(208, 0, 255);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .boxes>div:last-child{
+        background-color: rgb(249, 189, 9);
+    }
+}

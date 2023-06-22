@@ -1,0 +1,138 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #F0F0F0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container{
+    width: 80%;
+    margin: 0px auto;
+}
+
+
+/* Header Start */
+
+header{
+    padding: 10px 0px;
+    background-color: #750DB5;
+    color: #ffffff;
+}
+
+.header-wrapper{
+   display: flex;
+   justify-content: space-between;
+}
+
+.header-wrapper ul{
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+}
+
+.header-wrapper ul li a{
+    color: #ffffff;
+}
+
+.header-wrapper ul li a:hover{
+    color: #d6ff00;
+}
+
+/* Header End */
+
+
+/* Banner Start */
+
+.banner{
+    padding: 80px 0px;
+}
+
+.banner-wrapper p{
+    margin: 20px 0px;
+}
+
+.banner-wrapper>div:last-child img{
+    width: 100%;
+}
+
+.banner-wrapper>div:first-child>div{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.banner-wrapper>div:first-child>div a:first-child{
+    background-color: #FFA92C;
+    color: #ffffff;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
+
+/* Banner End */
+
+
+/* Responsive Design Start */
+
+
+@media only screen and (min-width: 992px){
+    .banner-wrapper h1{
+        font-size: 48px;
+        font-weight: 600;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .banner-wrapper h1 span{
+        display: block;
+    }
+    .banner-wrapper{
+        display: flex;
+        align-items: center;
+    }
+
+    .banner-wrapper>div{
+        width: 50%;
+    }
+}
+
+
+@media only screen and (max-width: 576px) {
+    /* .header-wrapper{
+        text-align: center;
+        display: block;
+    }
+
+    .header-wrapper ul{
+        margin-top: 20px;
+    } */
+
+    .header-wrapper{
+        text-align: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .banner-wrapper{
+        text-align: center;
+    }
+
+    .banner-wrapper>div:first-child>div{
+        justify-content: center;
+    }
+}
+
+/* Responsive Design End */
