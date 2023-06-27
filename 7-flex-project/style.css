@@ -83,6 +83,71 @@ header{
 /* Banner End */
 
 
+/* The Jobs Start */
+
+.jobs{
+    padding: 80px 0px;
+}
+
+.job-wrapper{
+    display: flex;
+    color: #ffffff;
+    gap: 20px;
+}
+
+.job-wrapper>div{
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.job-wrapper>div>div{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.job-wrapper>div>div a{
+    color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+}
+
+.job-wrapper>div>div a:hover{
+    background-color: #FFA92C;
+}
+
+.job-wrapper>div img{
+    width: 30px;
+    height: 30px;
+}
+
+.job-wrapper>div span{
+    display: inline-block;
+    margin: 10px 0px;
+}
+
+.job-wrapper>div:first-child{
+    background-color: #0C445C;
+}
+.job-wrapper>div:nth-child(2){
+    background-color: #5B2C98;
+}
+.job-wrapper>div:last-child{
+    background-color: #7F3219;
+}
+
+
+/* footer */
+
+footer{
+    background-color: #D6D6D6;
+    text-align: center;
+    color: #555555;
+    padding: 20px 0px;
+}
+
 /* Responsive Design Start */
 
 
@@ -91,6 +156,8 @@ header{
         font-size: 48px;
         font-weight: 600;
     }
+
+   
 }
 
 @media only screen and (min-width: 768px){
@@ -132,6 +199,11 @@ header{
 
     .banner-wrapper>div:first-child>div{
         justify-content: center;
+    }
+}
+@media only screen and (max-width: 992px){
+    .job-wrapper{
+        flex-direction: column;
     }
 }
 
