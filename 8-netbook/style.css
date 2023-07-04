@@ -164,7 +164,8 @@ header{
 /* Three box start */
 .three-wrapper{
     display: flex;
-    gap: 50px;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .three-wrapper>div{
@@ -172,6 +173,7 @@ header{
     border: 1px solid #e5e5e5;
     border-radius: 15px;
     transition: 1s all;
+    width: 30%;
 }
 
 .three-wrapper>div:hover{
@@ -234,9 +236,39 @@ header{
    .nc-wrapper>div:first-child>div{
     justify-content: center;
    }
+
+   .three-wrapper{
+    flex-direction: column;
+    align-items: center;
+   }
+
+   .three-wrapper>div{
+    margin-top: 25px;
+   }
+
+   /* .three-wrapper>div:first-child{
+    width: 48%;
+   }
+   .three-wrapper>div:nth-child(2){
+    width: 48%;
+   }
+   .three-wrapper>div:last-child{
+    width: 100%;
+    margin-top: 25px;
+   } */
+
+
 }
 @media only screen and (max-width: 576px) {
    .nc-wrapper h1{
     font-size: 40px !important;
    } 
+   /* .three-wrapper>div:first-child,
+   .three-wrapper>div:nth-child(2),
+   .three-wrapper>div:last-child{
+    width: 100%;
+    margin-top: 25px;
+   } */
+   
+   
 }
