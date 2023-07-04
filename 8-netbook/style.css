@@ -161,6 +161,42 @@ header{
 
 /* Social networks end */
 
+/* Three box start */
+.three-wrapper{
+    display: flex;
+    gap: 50px;
+}
+
+.three-wrapper>div{
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    transition: 1s all;
+}
+
+.three-wrapper>div:hover{
+    box-shadow: 0px 26px 49px 0 rgba(146, 165, 184, 0.3);
+}
+
+.three-wrapper>div>div:first-child,
+.three-wrapper>div>div:nth-child(2){
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.three-wrapper p{
+    margin-bottom: 15px;
+    color: #8C8C8C;
+    line-height: 1.8;
+}
+
+.three-wrapper>div>div:nth-child(2)>span>span{
+    color: #217BF4;
+}
+
+/* Three box  end */
 
 /* Media Starts */
 
