@@ -296,6 +296,84 @@ header{
 
 /* Media Starts */
 
+/* App Start */
+.app{
+    background-color: #E5F0FD;
+    padding: 80px 0px;
+}
+.app-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.app-wrapper>div:first-child>div{
+    display: flex;
+    gap: 25px;
+}
+
+.app-wrapper>div:last-child img{
+   width: 100%;
+}
+
+.app-wrapper>div{
+    width: 50%;
+    text-align: center;
+}
+
+.app-wrapper span{
+    color: #217BF4;
+}
+
+.app-wrapper h2{
+    margin: 25px 0px;
+}
+.app-wrapper p{
+    margin: 25px 0px;
+}
+
+/* App End */
+
+/* news Start */
+.news{
+    padding: 80px 0px;
+}
+.news-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.news-wrapper>div>div>div:first-child{
+    width: 30px;
+    height: 2px;
+    background-color: orangered;
+    position: relative;
+    top: 8px;
+}
+
+.news-wrapper>div>div{
+    display: flex;
+    gap: 20px;
+}
+
+.news-wrapper>div>div p{
+    margin-bottom: 25px;
+}
+
+.news-wrapper>div>div a{
+    color: #333333;
+}
+
+.news-wrapper>div>div a:hover{
+    color: blue;
+}
+
+.news-wrapper>div{
+    width: 30%;
+}
+/* news End */
+
 @media only screen and (min-width: 992px) {
     .sn-wrapper h2 span{
         display: block;
@@ -303,6 +381,19 @@ header{
     .sn-wrapper p{
         width: 75%;
     }
+
+    .app-wrapper>div:first-child{
+        text-align: left;
+    }
+    .app-wrapper>div:last-child{
+        text-align: right;
+    }
+
+    .app h2, .app p{
+        width: 70%;
+    }
+    
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -311,6 +402,24 @@ header{
    }  
    .community-wrapper>div{
     width: 100%;
+   }
+
+   .news-wrapper>div{
+    width: 100%;
+   }
+
+   .news-wrapper>div{
+    text-align: center;
+   }
+
+   .news-wrapper>div>img{
+    width: 50%;
+    margin-bottom: 25px;
+   }
+
+   .news-wrapper>div>div {
+    justify-content: center;
+    margin-bottom: 25px;
    }
 }
 @media only screen and (max-width: 992px) {
@@ -356,6 +465,15 @@ header{
 
    .members-wrappers>div{
     width: 48%;
+    }
+
+    .app-wrapper>div{
+        width: 100%;
+    }
+
+    .app-wrapper>div:first-child>div{
+        justify-content: center;
+        margin-bottom: 50px;
     }
 
 
