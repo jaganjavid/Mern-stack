@@ -25,8 +25,38 @@ body{
     max-width: 1200px !important;
 }
 
+/* Shared Style */
+.my-btn{
+    padding: 12px 30px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.my-btn-outline{
+    background-color: transparent;
+    border: 2px solid #000000;
+    color: #000000 !important;
+}
+
+.my-btn-solid{
+    background: #000000;
+    color: #ffffff !important;
+    box-shadow: 5px 5px 0px 0px grey;
+    transition: box-shadow .30s;
+}
+
+.my-btn-solid:hover{
+    box-shadow: -5px 5px 0px 0px grey;
+}
+/* Shared Style */
+
 
 /* Header Started */
+
+header{
+    padding: 15px 0px;
+    background-color: #F7EDE8;
+}
 
 .header-wrapper{
     display: flex;
@@ -46,11 +76,117 @@ body{
     justify-content: space-between;
 }
 
+.header-wrapper>div:first-child ul li a{
+    color: #000000;
+}
+
 .header-wrapper>div:last-child{
     display: flex;
     justify-content: flex-end;
     width: 60%;
+    gap: 20px;
 }
 
 
 /* Header Ended */
+
+/* Banner Start*/
+.banner{
+    padding: 50px 0px;
+    background-color: #F7EDE8;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+.banner h1{
+    font-size: 65px;
+    font-weight: 600;
+}
+
+.banner h1 span{
+    display: block;
+    color: #CD4631;
+}
+
+.banner p{
+    margin: 35px 0px;
+}
+
+.banner .my-btn{
+    margin-top: 20px;
+}
+
+.banner-img{
+    display: none;
+}
+
+.banner-img>img:first-child{
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     left: 0px;
+ }
+
+ .banner-img>img:last-child{
+     position: absolute;
+     top: 50%;
+     right: 0px;
+     transform: translateY(-25%);
+ }
+
+
+.banner-img-2::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -50px;
+    background: url("../images/banner/waves.svg") no-repeat center;
+    width: 250px;
+    height: 265px;
+    transform: translateY(-50%);
+ }
+
+/* Banner End*/
+
+
+/* Responsive Started */
+/* @media only screen and (min-width: 768px) {
+    .banner-img{
+       display: none;
+    }
+
+    .banner-img>img:first-child{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0px;
+    }
+
+    .banner-img>img:last-child{
+        position: absolute;
+        top: 50%;
+        right: 0px;
+        transform: translateY(-25%);
+    }
+} */
+
+@media only screen and (max-width: 768px) {
+    .header-wrapper ul,
+    .header-wrapper .my-btn{
+        display: none !important;
+    }
+
+    .banner-img{
+        display: none;
+    }
+
+    .banner-img-2::after{
+        background: url("../images/banner/small.svg") no-repeat center;
+        width: 180px;
+        height: 115px;
+    }
+
+}
+
+/* Responsive End */
