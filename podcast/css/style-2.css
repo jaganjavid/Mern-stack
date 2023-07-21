@@ -11,6 +11,15 @@ h1,h2,h3,h4,h5,h6,p,ul{
     list-style: none;
 }
 
+h2{
+    font-size: 40px;
+    font-weight: 700;
+}
+
+h3{
+    font-size: 25px;
+}
+
 a{
     text-decoration: none;
 }
@@ -47,6 +56,10 @@ body{
 
 .my-btn-solid:hover{
     box-shadow: -5px 5px 0px 0px grey;
+}
+
+.sec-heading{
+    margin-bottom: 50px;
 }
 /* Shared Style */
 
@@ -145,7 +158,19 @@ header{
     width: 250px;
     height: 265px;
     transform: translateY(-50%);
- }
+}
+
+/* .banner-img-2::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    background: url("../images/banner/stars.svg") no-repeat center;
+    width: 250px;
+    height: 265px;
+    transform: translateY(-50%);
+} */
+
 
 /* Banner End*/
 
@@ -171,6 +196,56 @@ header{
     }
 } */
 
+.three-box{
+   padding: 80px 0px;
+   background-color: #F7EDE8;
+}
+
+.three-box>div>div img{
+    width: 100%;
+}
+
+.three-box>div>div>div>div{
+    position: relative;
+}
+
+.three-box>div>div>div>div h3{
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    color: #e13232;
+    font-weight: 700;
+}
+
+/* Supported Start*/
+
+.supported{
+    padding: 80px 0px;
+    background-color: #F7EDE8;
+}
+
+.supported-wrapper{
+    padding: 30px 0px;
+    border-bottom: 1px solid #333333;
+    border-top: 1px solid #333333;
+}
+
+/* Supported end */
+
+/* talk start */
+.talk{
+   padding: 80px 0px;
+   position: relative;
+}
+
+.scribble{
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* talk end */
+
 @media only screen and (max-width: 768px) {
     .header-wrapper ul,
     .header-wrapper .my-btn{
@@ -187,6 +262,25 @@ header{
         height: 115px;
     }
 
+    .three-box>div>div>div:last-child>div{
+        width: 50%;
+        margin: 20px auto;
+    }
+
+}
+
+@media only screen and (max-width: 576px) {
+    .three-box>div>div>div:last-child>div{
+        width: 70%;
+    }
+    .three-box>div>div>div>div{
+        width: 70%;
+        margin: 20px auto;
+    }
+
+    h2{
+        font-size: 32px;
+    }
 }
 
 /* Responsive End */
