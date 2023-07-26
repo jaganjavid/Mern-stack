@@ -18,6 +18,7 @@ h2{
 
 h3{
     font-size: 25px;
+    font-weight: 700;
 }
 
 a{
@@ -197,7 +198,7 @@ header{
 } */
 
 .three-box{
-   padding: 80px 0px;
+   padding: 120px 0px;
    background-color: #F7EDE8;
 }
 
@@ -220,7 +221,7 @@ header{
 /* Supported Start*/
 
 .supported{
-    padding: 80px 0px;
+    padding: 120px 0px;
     background-color: #F7EDE8;
 }
 
@@ -234,7 +235,7 @@ header{
 
 /* talk start */
 .talk{
-   padding: 80px 0px;
+   padding: 120px 0px;
    position: relative;
 }
 
@@ -244,7 +245,74 @@ header{
     left: 50%;
     transform: translateX(-50%);
 }
+
+.talk-podcasts{
+    background-color: #F7EDE8;
+    padding: 50px 0px;
+    border-radius: 12px;
+    position: relative;
+    margin-top: 80px;
+}
+
+.talk-podcasts>div:last-child>img:first-child{
+   position: absolute;
+   top: 50%;
+   left: -45px;
+}
+.talk-podcasts>div:last-child>img:last-child{
+   position: absolute;
+   top: -45px;
+   right: -40px;
+}
+
 /* talk end */
+
+/* listeners Start */
+.listeners{
+    padding: 120px 0px;
+    position: relative;
+    background-color: #EDF3F7;
+}
+
+.listeners>div:last-child>img{
+   position: absolute;
+   top: -50px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.listeners .sec-heading{
+    margin-top: 30px;
+}
+
+.sec-heading h2{
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.sec-heading h2>img{
+    position: absolute;
+    top: -50px;
+    left: -50px;
+}
+
+.listeners-wrapper>div>div>div{
+    background-color: #ffffff;
+    padding: 50px 80px;
+    border-radius: 5px;
+}
+
+.listeners-wrapper>div>div>div p{
+    line-height: 2;
+}
+/* listeners End */
+
+@media only screen and (max-width: 992px) {
+    .talk-podcasts{
+        overflow: hidden;
+    }
+}
 
 @media only screen and (max-width: 768px) {
     .header-wrapper ul,
