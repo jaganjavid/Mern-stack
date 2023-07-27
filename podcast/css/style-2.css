@@ -274,7 +274,7 @@ header{
     background-color: #EDF3F7;
 }
 
-.listeners>div:last-child>img{
+.line>img{
    position: absolute;
    top: -50px;
    left: 50%;
@@ -291,7 +291,7 @@ header{
     margin-bottom: 15px;
 }
 
-.sec-heading h2>img{
+.sec-heading h2>img:not(.sec-right h2>img){
     position: absolute;
     top: -50px;
     left: -50px;
@@ -307,6 +307,28 @@ header{
     line-height: 2;
 }
 /* listeners End */
+
+/* membership Start */
+.membership{
+    padding: 120px 0px;
+    position: relative;
+}
+
+.membership .sec-right h2>img{
+ position: absolute;
+ top: -50px;
+ right: -60px;
+}
+
+.membership h4{
+    font-weight: 600;
+}
+
+.membership>:nth-child(2){
+    text-align: center;
+    margin-top: 100px;
+}
+/* membership End */
 
 @media only screen and (max-width: 992px) {
     .talk-podcasts{
