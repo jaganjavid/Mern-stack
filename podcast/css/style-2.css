@@ -259,6 +259,7 @@ header{
    top: 50%;
    left: -45px;
 }
+
 .talk-podcasts>div:last-child>img:last-child{
    position: absolute;
    top: -45px;
@@ -329,16 +330,89 @@ header{
     margin-top: 100px;
 }
 
-.test-img{
+/* .test-img{
     width: 50px;
     height: 50px;
     background: url("../images/ring.svg") no-repeat;
 }
 
+ul li:hover div{
+    
+} */
+
 .test-img:hover{
     background: url("../images/wave.png");
 }
 /* membership End */
+
+/* Episode start */
+.episodes-wrapper h5{
+    font-size: 15px;
+    color: #CD4631;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.episodes-wrapper h6{
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.episodes-wrapper p{
+    padding-top: 12px;
+    border-top: 1px solid #d5d5d5;
+}
+
+.episodes-wrapper>div>div>div{
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.episodes-wrapper>div>div>div>div:last-child>div:first-child span{
+    padding: 10px;
+    border: 1px solid #d5d5d5;
+}
+
+.all-epi-child>div:nth-child(odd)>div>div:first-child>div{
+    box-shadow: 8px 8px 0px 0px #81ADC8;
+}
+
+.all-epi-child>div:nth-child(odd)>div>div:first-child>div h6{
+    color: #CD4631;
+}
+
+.all-epi-child>div:nth-child(even)>div>div:last-child>div{
+    box-shadow: 8px 8px 0px 0px #81ADC8;
+}
+
+.all-epi-child>div:nth-child(even)>div>div:last-child>div h6{
+    color: #CD4631;
+}
+
+.all-epi-child {
+    position: relative;
+}
+
+.spark{
+    position: absolute;
+    top: -60px;
+    right: -60px;
+}
+
+.episodes h2{
+    position: relative;
+    display: inline-block;
+}
+
+.episodes .sec-right h2>img {
+    position: absolute;
+    top: -50px;
+    right: -60px;
+}
+
+/* Episode end */
 
 @media only screen and (max-width: 992px) {
     .talk-podcasts{
@@ -380,6 +454,10 @@ header{
 
     h2{
         font-size: 32px;
+    }
+
+    .sec-heading h2 span{
+        display: block;
     }
 }
 
