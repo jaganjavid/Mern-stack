@@ -346,6 +346,10 @@ ul li:hover div{
 /* membership End */
 
 /* Episode start */
+.episodes{
+    padding: 120px 0px;
+}
+
 .episodes-wrapper h5{
     font-size: 15px;
     color: #CD4631;
@@ -414,9 +418,75 @@ ul li:hover div{
 
 /* Episode end */
 
+/* available start */
+.available{
+    padding:120px 0px;
+    position: relative;
+    background-color: #EDF3F7;
+}
+
+.avi-wrapper{
+    text-align: center;
+}
+
+.avi-wrapper>span:first-child{
+    display: inline-block;
+    border: 1px solid #CD4631;
+    border-radius: 8px;
+    padding: 5px 8px;
+    color: #CD4631;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.avi-wrapper>div:nth-of-type(2){
+   position: relative;
+   display: inline-block;
+   margin-bottom: 25px;
+}
+
+.avi-wrapper>div:nth-of-type(2) img{
+    position: absolute;
+    top: -30px;
+    right: -40px;
+
+}
+
+.mobile-img>img:first-child{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+.mobile-img>img:last-child{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+
+
+/* available end */
+
+/* Footer start */
+footer{
+    padding: 120px 0px;
+}
+.footer-link li{
+    margin-bottom: 15px;
+}
+/* Footer end */
+
 @media only screen and (max-width: 992px) {
     .talk-podcasts{
         overflow: hidden;
+    }
+
+    .mobile-img>img:first-child{
+        width: 200px;
+    }
+
+    .mobile-img>img:last-child{
+        width: 200px;
     }
 }
 
@@ -439,6 +509,11 @@ ul li:hover div{
     .three-box>div>div>div:last-child>div{
         width: 50%;
         margin: 20px auto;
+    }
+
+    .mobile-img>img:first-child,
+    .mobile-img>img:last-child{
+        display: none;
     }
 
 }
