@@ -15,19 +15,19 @@ function test(){
 }
 
 
-test();
+// test();
 
 
 
 
-// if(true){
-//     // Block scope
-//     var a = 4;
-//     let b = 5;
-//     const c = 6;
+if(true){
+    // Block scope
+    let a = 4;
+    let b = 5;
+    const c = 6;
 
-//     console.log(`Block Scope`, a, b, c);
-// }
+    // console.log(`Block Scope`, a, b, c);
+}
 
 for(let a = 0; a < 10; a++){
     console.log(`Loop`, a);
@@ -35,3 +35,10 @@ for(let a = 0; a < 10; a++){
 
 
 console.log(`Global Scope`, a, b, c);
+
+let myNewName = "Javid";
+
+
+console.log(myNewName);
+
+console.log(window);

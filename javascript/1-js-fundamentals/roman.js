@@ -39,6 +39,8 @@ const romanNumeral = "XXVII";
 const integerEquivalent = romanToInt(romanNumeral);
 console.log(integerEquivalent); // Output: 27
 
+// console.log(romanNumeral[4]);
+
 
 
 
