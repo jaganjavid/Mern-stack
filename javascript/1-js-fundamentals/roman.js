@@ -65,5 +65,9 @@ console.log(integerEquivalent); // Output: 27
 
 // console.log(obj["test"]);
 
+const x = {
+    
+}
+
 
 

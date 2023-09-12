@@ -16,8 +16,21 @@ taskTitle.style.color = "#ffffff";
 taskTitle.style.padding = "20px";
 
 // change Content
-// taskTitle.textContent = "Task List";
-// taskTitle.innerText = "Task List";
-taskTitle.innerHTML = "<span>Lokesh is a good or bad</span>";
+// console.log(taskTitle.textContent = "Task List");
+// console.log(taskTitle.innerText = "Task List2");
+// taskTitle.innerHTML = "<span>Lokesh is a good or bad</span>";
 
-console.log(taskTitle);
+
+// document.querySelector("");
+
+console.log(document.querySelector("#task-title"));
+console.log(document.querySelector(".collection"));
+const li = document.querySelector("li");
+
+document.querySelector("li:nth-child(3)").style.color = "green";
+document.querySelector("li:first-child").style.color = "blue";
+document.querySelector("li:last-child").style.color = "red";
+document.querySelector("li:nth-child(odd)").style.color = "yellow";
+document.querySelector("li:nth-child(even)").style.color = "purple";
+document.querySelector("ul>li:first-child").style.color = "orange";
+
