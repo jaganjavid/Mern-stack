@@ -12,6 +12,7 @@ document.querySelector(".clear-tasks")
 const purpleBtn = document.querySelector(".purple");
 
 function onClick(event){
+    
     let val;
     
     val = event;
@@ -24,7 +25,12 @@ function onClick(event){
     purpleBtn.classList.remove("purple");
     purpleBtn.classList.add("green");
     purpleBtn.style.margin = "20px";
-    purpleBtn.value = "Hello guys";
+    // purpleBtn.value = "Hello guys";
+
+    purpleBtn.innerText = "Btn text changed";
 
     console.log(purpleBtn);
+
 }
+
+
