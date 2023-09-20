@@ -3,7 +3,7 @@ const form = document.querySelector("#task-form");
 const taskInput = document.querySelector("#task");
 const taskList = document.querySelector(".collection");
 const clearBtn = document.querySelector("#btn-clear");
-
+const searchInput = document.getElementById("searchInput");
 
 
 
@@ -18,6 +18,11 @@ function loadEventListerners(){
 
     // Remove task
     taskList.addEventListener("click", removeTask);
+
+    clearBtn.addEventListener("click", clearTask);
+
+    searchInput.addEventListener("input", search);
+    
 }
 
 
@@ -64,6 +69,8 @@ function addTask(e){
  
 }
 
+
+
 // Remove Task
 
 function removeTask(e){
@@ -85,10 +92,42 @@ if(e.target.parentElement.classList.contains("delete-item")){
       }
 }
 
+}
+
+
+function clearTask(){
+    taskList.innerHTML = null;
+
+    // let lists = document.querySelectorAll("li");
+    // lists.forEach(function (task) {
+    //     task.remove();
+    // });
+}
+
+function search(e){
+
+    const items = document.querySelectorAll("li");
+    
+    const searchTerm = e.target.value.toLowerCase();
+
+    for (let i = 0; i < items.length; i++) {
+        const itemText = items[i].textContent.toLowerCase();
+
+        if (itemText.includes(searchTerm)) {
+            items[i].style.display = "block";
+        } else {
+            items[i].style.display = "none";
+        }
+    }
+
+}
+
 
 
 
 // Event delegation in JavaScript is a pattern that 
 // efficiently handles events. Events can be added to 
 // a parent element instead of adding to every single element.
-}
+
+
+
