@@ -16,13 +16,62 @@ function loadEventListerners(){
     // Add Task
     form.addEventListener("submit", addTask);
 
-    // Remove task
+    // Remove Task
     taskList.addEventListener("click", removeTask);
 
+    // Clear Task
     clearBtn.addEventListener("click", clearTask);
 
+    // Search TAsk
     searchInput.addEventListener("input", search);
+
+    // Event will run when page relode
+    document.addEventListener("DOMContentLoaded", getTasks);
+
+
     
+}
+
+// Get Tasks
+
+function getTasks(){
+    let tasks;
+
+    if(localStorage.getItem("tasks") === null){
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem("tasks")); //array
+    }
+
+    if(tasks.length > 0){
+        tasks.forEach(function(item){
+            // create a li element
+            const li = document.createElement("li");
+
+            // Add class
+            li.className = "collection-item";
+
+            // Create a text node and append to li
+            li.appendChild(document.createTextNode(item));
+
+            // li.innerText = "Hello"
+
+            // Create a New link element
+            const link = document.createElement("a");
+
+            // Add class to link
+            link.className = "delete-item secondary-content";
+
+            // Add icon to link
+            link.innerHTML = `<i class="fa fa-remove"></i>`;
+
+            // Append the link to li
+            li.appendChild(link);
+
+            // append li to ul
+            taskList.appendChild(li);
+        })
+    }
 }
 
 
@@ -62,6 +111,9 @@ function addTask(e){
         // append li to ul
         taskList.appendChild(li);
 
+        // STORE IN LS
+        storeInLS(taskInput.value);
+
          // Clear the input value
          taskInput.value = "";
 
@@ -69,6 +121,22 @@ function addTask(e){
  
 }
 
+// Store in local storage
+
+function storeInLS(taskValue){
+    let tasks;
+
+    if(localStorage.getItem("tasks") === null){
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem("tasks")); //array
+    }
+
+    tasks.push(taskValue);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+}
 
 
 // Remove Task
@@ -122,6 +190,19 @@ function search(e){
 
 }
 
+
+
+// const arr = ["Jagan", 1,true,{name:'Jagan'}];
+
+// const arrtoString = JSON.stringify(arr);
+
+// console.log(arrtoString);
+// console.log(typeof arrtoString);
+
+// const stringtoArr = JSON.parse(arrtoString);
+
+// console.log(stringtoArr);
+// console.log(typeof stringtoArr);
 
 
 
