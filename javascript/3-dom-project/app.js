@@ -157,10 +157,36 @@ function removeTask(e){
 if(e.target.parentElement.classList.contains("delete-item")){
      if(confirm("Are you sure")){
         e.target.parentElement.parentElement.remove();
+        removeFromLs(e.target.parentElement.parentElement);
       }
+
+      
 }
 
+// Event delegation in JavaScript is a pattern that 
+// efficiently handles events. Events can be added to 
+// a parent element instead of adding to every single element.
+
 }
+
+function removeFromLs(taskElement){
+    let tasks;
+
+    if(localStorage.getItem("tasks") === null){
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem("tasks")); //array
+    }
+
+    tasks.forEach(function(task, index){
+       if(taskElement.textContent === task){
+          tasks.splice(index, 1);
+       }
+    })
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
 
 
 function clearTask(){
@@ -170,6 +196,12 @@ function clearTask(){
     // lists.forEach(function (task) {
     //     task.remove();
     // });
+
+    clearTaskFromLs();
+}
+
+function clearTaskFromLs(){
+    localStorage.removeItem("tasks");
 }
 
 function search(e){
@@ -190,25 +222,25 @@ function search(e){
 
 }
 
+// const arr = [1,2,3];
+
+// const arrayToString = JSON.stringify(arr);
+
+// const stringToArray = JSON.parse(arrayToString);
 
 
-// const arr = ["Jagan", 1,true,{name:'Jagan'}];
+// console.log(arrayToString);
+// console.log(typeof arrayToString);
 
-// const arrtoString = JSON.stringify(arr);
+// const arr = [1,2,3];
 
-// console.log(arrtoString);
-// console.log(typeof arrtoString);
+// arr.splice(1,2);
 
-// const stringtoArr = JSON.parse(arrtoString);
-
-// console.log(stringtoArr);
-// console.log(typeof stringtoArr);
+// console.log(arr)
 
 
 
-// Event delegation in JavaScript is a pattern that 
-// efficiently handles events. Events can be added to 
-// a parent element instead of adding to every single element.
+
 
 
 
