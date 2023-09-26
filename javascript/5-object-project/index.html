@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .edit{
+            color: rgb(198, 175, 45);
+        }
+        .delete{
+            color: rgb(198, 81, 45);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-3 text-start">Add Book</h1>
+
+        <div class="app-alert"></div>
+
+        <form id="book-form">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Add Title" id="title">
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Add Author" id="author">
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Add ISBN" id="isbn">
+            </div>
+
+            <button type="submit" class="btn btn-info">Add</button>
+        </form>
+
+        <table class="table mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">ISBN</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="book-list">
+              <tr>
+                <td>Learning</td>
+                <td>jagan</td>
+                <td>5354</td>
+                <td>
+                <div class="d-flex gap-5">
+                    <i class="edit fa-solid fa-pen-to-square"></i>
+                    <i class="delete fa-solid fa-trash"></i>
+                </div>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>

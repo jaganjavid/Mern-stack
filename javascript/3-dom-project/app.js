@@ -80,7 +80,7 @@ function getTasks(){
 function addTask(e){
     e.preventDefault();
     
-    if(taskInput.value === ""){
+    if(taskInput.value.trim() === ""){
         alert("Add the task");
         // return;
     }else {
