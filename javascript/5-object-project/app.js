@@ -5,25 +5,25 @@ let editedBookIndex = -1;
 
 
 // Book construtor
-function Book(title, author, isbn){
+function Book(title, author, isbn) {
     this.title = title;
     this.author = author;
     this.isbn = isbn;
 }
 
 
-function UI(){
+function UI() {
 
     // Add book to list
-    UI.prototype.addBookToList = function(book){
-      const bodyList = document.querySelector("#book-list");
+    UI.prototype.addBookToList = function (book) {
+        const bodyList = document.querySelector("#book-list");
 
-    // Create a tr element
-    const row = document.createElement("tr");
+        // Create a tr element
+        const row = document.createElement("tr");
 
-    // console.log(row);
+        // console.log(row);
 
-    row.innerHTML = `
+        row.innerHTML = `
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.isbn}</td>
@@ -36,18 +36,18 @@ function UI(){
         </td>
     `;
 
-    bodyList.appendChild(row);
+        bodyList.appendChild(row);
 
     }
 
 
-    UI.prototype.clearFields = function(){
+    UI.prototype.clearFields = function () {
         document.querySelector("#title").value = "";
         document.querySelector("#author").value = "";
         document.querySelector("#isbn").value = "";
     }
 
-    UI.prototype.deleteBook = function(element){
+    UI.prototype.deleteBook = function (element) {
         element.parentElement.parentElement.parentElement.remove();
     }
 
@@ -71,33 +71,33 @@ function UI(){
     UI.prototype.showAlert = function (message, className) {
         // Clear any existing alerts
         this.clearAlert();
-    
+
         // Create a div element
         const div = document.createElement("div");
-    
+
         // Add class
         div.className = `alert ${className}`;
-    
+
         // Add text
         div.appendChild(document.createTextNode(message));
-    
+
         const insertAlert = document.querySelector(".app-alert");
-    
+
         insertAlert.appendChild(div);
-    
+
         // Automatically remove the alert after 3 seconds
         setTimeout(() => {
             this.clearAlert();
         }, 3000);
     };
-    
+
     UI.prototype.clearAlert = function () {
         const existingAlert = document.querySelector(".app-alert .alert");
         if (existingAlert) {
             existingAlert.remove();
         }
     };
-    
+
 }
 
 
@@ -178,8 +178,8 @@ document.querySelector("#book-list").addEventListener("click", function (e) {
 });
 
 // Event Listener for delete book
-document.querySelector("#book-list").addEventListener("click", function(e){
-    if(e.target.classList.contains("delete")){
+document.querySelector("#book-list").addEventListener("click", function (e) {
+    if (e.target.classList.contains("delete")) {
         const ui = new UI();
 
         // Delete Book 
