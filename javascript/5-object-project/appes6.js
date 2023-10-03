@@ -29,7 +29,6 @@ class UI {
          <i class="edit fa-solid fa-pen-to-square"></i>
          <i class="delete fa-solid fa-trash"></i>
          </div>
-           
         </td>
     `;
 
@@ -280,4 +279,3 @@ document.querySelector("#book-list").addEventListener("click", function (e) {
         ui.showAlert("Bood removed succesfully", "alert-success");
     }
 })
-
