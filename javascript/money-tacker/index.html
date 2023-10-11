@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+     
+</head>
+<body>
+
+    <nav class="brown darken-4">
+        <div class="nav-wrapper">
+            <div class="container">
+                <a href="#" class="brand-logo center">
+                    Money Tracker
+                </a>
+                <ul class="right">
+                   <li><a href="#" class="clear-btn btn brown darken-1">
+                    Clear All
+                   </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+       <div class="card">
+        <div class="card-content">
+            <span class="card-title">Add Money</span>
+
+            <form>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="item-name" class="validate" placeholder="Enter Name">
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="number" id="item-money" class="validate" placeholder="Enter Money">
+                    </div>
+                </div>
+
+                <button class="add-btn btn green darken-1">
+                    <i class="fa fa-plus"></i> Add Item
+                </button>
+                <button class="update-btn btn orange darken-1">
+                    <i class="fa fa-pencil"></i> Update Item
+                </button>
+                <button class="delete-btn btn red darken-1">
+                    <i class="fa-solid fa-trash"></i> delete Item
+                </button>
+                <button class="back-btn btn grey darken-1">
+                    <i class="fa fa-chevron-left"></i> Back 
+                </button>
+            </form>
+        </div>
+       </div>  
+
+       <!-- Total Count -->
+
+       <h3 class="center-align">Total Money - <span class="total-money">
+           0
+       </span></h3>
+
+
+       <ul id="item-list" class="collection">
+          <li class="collection-item" id="item-0">
+            <strong>Mobile : <em>1200 $</em></strong>
+            <a href="#" class="secondary-content edit-item">
+                <i class="fa fa-pencil"></i>
+            </a>
+          </li> 
+       </ul>
+    </div>
+    
+
+    <script src="./app.js"></script>
+</body>
+</html>
+
