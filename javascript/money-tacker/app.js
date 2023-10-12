@@ -71,9 +71,44 @@ const ItemCtrl = (function(){
 
           return newItem;
 
+        },
+        getItemById: function(id){
+
+           let found = null;
+
+           // Loop the items
+
+           data.items.forEach(function(item){
+             if(item.id === id){
+                found = item
+             }
+           })
+
+           return found;
+        },
+        setCurrentItem: function(itemToEdit){
+           data.currentItem = itemToEdit;
+        },
+        getCurrentItem: function(){
+            return data.currentItem;
+        },
+        deleteItem: function(id){
+
+            // Get IDS
+            const ids = data.items.map(function(item){
+                return item.id;
+            })
+
+           // Get Index
+           const index = ids.indexOf(2);
+
+            
+           data.items.splice(index, 1);
+
         }
     }
 })();
+
 
 const UICtrl = (function(){
 
@@ -98,6 +133,12 @@ const UICtrl = (function(){
             document.querySelector(".update-btn").style.display = "none";
             document.querySelector(".delete-btn").style.display = "none";
             document.querySelector(".back-btn").style.display = "none";
+        },
+        showEditState: function(){
+            document.querySelector(".add-btn").style.display = "none";
+            document.querySelector(".update-btn").style.display = "inline";
+            document.querySelector(".delete-btn").style.display = "inline";
+            document.querySelector(".back-btn").style.display = "inline";
         },
         showTotalMoney: function(totalMoney){
           document.querySelector(".total-money").textContent = totalMoney;
@@ -132,6 +173,15 @@ const UICtrl = (function(){
         clearInputState: function(){
             document.querySelector("#item-name").value = "";
             document.querySelector("#item-money").value = "";
+        },
+        addItemToForm: function(){
+            document.querySelector("#item-name").value = ItemCtrl.getCurrentItem().name;
+            document.querySelector("#item-money").value = ItemCtrl.getCurrentItem().money;
+        },
+        deleteListItem: function(id){
+            const itemID = `#item-${id}`;
+            const item = document.querySelector(itemID);
+            item.remove();
         }
 
 
@@ -147,7 +197,11 @@ const App = (function(ItemCtrl, UICtrl){
         // Add item Event
         document.querySelector(".add-btn").addEventListener("click", itemAddSubmit);
 
-        // 
+        // For edit
+        document.querySelector("#item-list").addEventListener("click", itemToEdit);
+
+        // Delete Item Event
+        document.querySelector(".delete-btn").addEventListener("click", itemDeleteSubmit)
     }
 
     const itemAddSubmit = function(e){
@@ -180,6 +234,59 @@ const App = (function(ItemCtrl, UICtrl){
         
     }
 
+    const itemToEdit = function(e){
+      if(e.target.parentElement.classList.contains("edit-item")){
+        
+        // Show All the button
+        UICtrl.showEditState();
+
+        const listID = e.target.parentElement.parentElement.id;
+
+        // Beark into An array
+        const listArr = listID.split("-");
+
+        // Get the autual ID
+        const id = parseInt(listArr[1]);
+
+        // Get the Item
+        const itemToEdit = ItemCtrl.getItemById(id);
+
+        // Set Current Item
+        ItemCtrl.setCurrentItem(itemToEdit);
+
+        // Add Item To form
+        UICtrl.addItemToForm();
+
+      }
+    }
+
+    const itemDeleteSubmit = function(e){
+        e.preventDefault();
+
+        // Get Current Item
+        const currentItem = ItemCtrl.getCurrentItem();
+
+        // Delete from the data structure
+        ItemCtrl.deleteItem(currentItem.id);
+
+        // Delete from ui
+        UICtrl.deleteListItem(currentItem.id);
+
+        // GET TOTAL MONEY
+        const totalMoney = ItemCtrl.getTotalMoney();
+
+        // Add total money to UI
+        UICtrl.showTotalMoney(totalMoney);
+
+        UICtrl.clearEditState();
+
+        // Clear A ui Input
+        UICtrl.clearInputState();
+
+        
+
+    }
+
     return {
        start: function(){
 
@@ -203,9 +310,6 @@ const App = (function(ItemCtrl, UICtrl){
 })(ItemCtrl, UICtrl);
 
 App.start();
-
-
-
 
 // const arr = [{a:1},{a:2},{a:3},{a:4}];
 
