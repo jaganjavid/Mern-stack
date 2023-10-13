@@ -3,12 +3,105 @@
 
 // STORAGE CONTROLLER
 
-// const StotageCtrl = (function(){
+// const StorageCtrl = (function(){
 
 //     return {
-//         test: "Hello Storage"
+//         storeItem: function(item){
+//             let items;
+
+//             // Check if any items in LS
+//             if(localStorage.getItem("items") === null){
+//                items = [];
+
+//                console.log("Step-1")
+
+//             } else {
+//                 // Get the existing data from ls
+//                 items = JSON.parse(localStorage.getItem("items"));
+//                 console.log("Step-2")
+//             }
+
+//             // Push the new item
+//             items.push(item);
+
+//             // Set the Ls
+//             localStorage.setItem("items", JSON.stringify(items));
+
+//         },
+//         getItems: function(){
+//             let items;
+
+//             // Check if any items in LS
+//             if(localStorage.getItem("items") === null){
+//                 items = [];
+//             }else {
+//                 // Get the existing data from ls
+//                 items = JSON.parse(localStorage.getItem("items"));
+//             } 
+
+//             return items;
+
+//         },
+//         updateItemLs: function(updatedItem){
+//           // Get the existing data from ls
+//           const items = JSON.parse(localStorage.getItem("items"));
+
+//           items.forEach(function(item, index){
+//              if(updatedItem.id === item.id){
+//                 items.splice(index, 1, updatedItem);
+//              }
+//           })
+
+//           localStorage.setItem("items", JSON.stringify(items));
+//         },
+//         deleteItemLs: function(id){
+//             // Get the existing data from ls
+//           const items = JSON.parse(localStorage.getItem("items"));
+
+//           items.forEach(function(item, index){
+//             if(id === item.id){
+//                 items.splice(index, 1);
+//             }
+//           })
+
+//           localStorage.setItem("items", JSON.stringify(items));
+//         }
 //     }
 // })();
+
+const StorageCtrl = (function () {
+    // Private methods
+    function getItemsFromLocalStorage() {
+        return JSON.parse(localStorage.getItem("items")) || [];
+    }
+
+    function setItemsToLocalStorage(items) {
+        localStorage.setItem("items", JSON.stringify(items));
+    }
+
+    // Public methods
+    return {
+        storeItem: function (item) {
+            let items = getItemsFromLocalStorage();
+            items.push(item);
+            setItemsToLocalStorage(items);
+        },
+        getItems: function () {
+            return getItemsFromLocalStorage();
+        },
+        updateItemLs: function (updatedItem) {
+            let items = getItemsFromLocalStorage();
+            items = items.map(item => (item.id === updatedItem.id ? updatedItem : item));
+            setItemsToLocalStorage(items);
+        },
+        deleteItemLs: function (id) {
+            let items = getItemsFromLocalStorage();
+            items = items.filter(item => item.id !== id);
+            setItemsToLocalStorage(items);
+        }
+    };
+})();
+
 
 const ItemCtrl = (function(){
 
@@ -21,11 +114,12 @@ const ItemCtrl = (function(){
     // Data Struture 
 
     const data = {
-        items: [
-            {id: 0, name: "clothes", money:2000},
-            {id: 1, name: "Phone", money:1000},
-            {id: 2, name: "Dinner", money:600}
-        ],
+        // items: [
+        //     {id: 0, name: "clothes", money:2000},
+        //     {id: 1, name: "Phone", money:1000},
+        //     {id: 2, name: "Dinner", money:600}
+        // ],
+        items: StorageCtrl.getItems(),
         currentItem: null,
         totalMoney: 0
     }
@@ -92,6 +186,22 @@ const ItemCtrl = (function(){
         getCurrentItem: function(){
             return data.currentItem;
         },
+        updateItem: function(name, money){
+          money = parseInt(money);
+
+          let found = null;
+          
+          data.items.forEach(function(item){
+            if(item.id === data.currentItem.id){
+                item.name = name;
+                item.money = money;
+                found = item;
+            }
+          })
+
+          return found;
+
+        },
         deleteItem: function(id){
 
             // Get IDS
@@ -100,7 +210,7 @@ const ItemCtrl = (function(){
             })
 
            // Get Index
-           const index = ids.indexOf(2);
+           const index = ids.indexOf(id);
 
             
            data.items.splice(index, 1);
@@ -178,6 +288,25 @@ const UICtrl = (function(){
             document.querySelector("#item-name").value = ItemCtrl.getCurrentItem().name;
             document.querySelector("#item-money").value = ItemCtrl.getCurrentItem().money;
         },
+        updateListItem: function(item){
+          let listItems = document.querySelectorAll("li");
+
+          listItems.forEach(function(listItem){
+            
+            const itemID = listItem.getAttribute("id");
+
+           if(itemID === `item-${item.id}`){
+
+              const li = document.querySelector(`#${itemID}`);
+              
+              li.innerHTML = `<strong>${item.name} : <em>${item.money} $</em></strong>
+              <a href="#" class="secondary-content edit-item">
+                  <i class="fa fa-pencil"></i>
+              </a>`
+           }
+
+          })
+        },
         deleteListItem: function(id){
             const itemID = `#item-${id}`;
             const item = document.querySelector(itemID);
@@ -190,7 +319,7 @@ const UICtrl = (function(){
 
 
 
-const App = (function(ItemCtrl, UICtrl){
+const App = (function(ItemCtrl, UICtrl, StorageCtrl){
 
     const loadEventListeners = function(){
 
@@ -200,8 +329,13 @@ const App = (function(ItemCtrl, UICtrl){
         // For edit
         document.querySelector("#item-list").addEventListener("click", itemToEdit);
 
+        // Update Item Event
+        document.querySelector(".update-btn").addEventListener("click", itemUpdateSubmit)
+
         // Delete Item Event
-        document.querySelector(".delete-btn").addEventListener("click", itemDeleteSubmit)
+        document.querySelector(".delete-btn").addEventListener("click", itemDeleteSubmit);
+
+        
     }
 
     const itemAddSubmit = function(e){
@@ -221,6 +355,9 @@ const App = (function(ItemCtrl, UICtrl){
 
             // Add Item To UI List
             UICtrl.addListItem(newItem);
+
+            // Store to local Storage
+            StorageCtrl.storeItem(newItem);
 
             // Get Total money
             const totalMoney = ItemCtrl.getTotalMoney();
@@ -260,17 +397,22 @@ const App = (function(ItemCtrl, UICtrl){
       }
     }
 
-    const itemDeleteSubmit = function(e){
+
+    const itemUpdateSubmit = function(e){
         e.preventDefault();
 
-        // Get Current Item
-        const currentItem = ItemCtrl.getCurrentItem();
+        // Get Item Input
+        const input = UICtrl.getItemInput();
 
-        // Delete from the data structure
-        ItemCtrl.deleteItem(currentItem.id);
+        // Update Item
+        const updateItem = ItemCtrl.updateItem(input.name, input.money);
 
-        // Delete from ui
-        UICtrl.deleteListItem(currentItem.id);
+        // Update UI
+        UICtrl.updateListItem(updateItem);
+
+        // Upadate to Ls
+        StorageCtrl.updateItemLs(updateItem);
+        
 
         // GET TOTAL MONEY
         const totalMoney = ItemCtrl.getTotalMoney();
@@ -283,7 +425,33 @@ const App = (function(ItemCtrl, UICtrl){
         // Clear A ui Input
         UICtrl.clearInputState();
 
-        
+    }
+
+    const itemDeleteSubmit = function(e){
+        e.preventDefault();
+
+        // Get Current Item
+        const currentItem = ItemCtrl.getCurrentItem();
+
+        // Delete from the data structure
+        ItemCtrl.deleteItem(currentItem.id);
+
+        // Delete from ui
+        UICtrl.deleteListItem(currentItem.id);
+
+         // Remove from LS
+         StorageCtrl.deleteItemLs(currentItem.id);
+
+        // GET TOTAL MONEY
+        const totalMoney = ItemCtrl.getTotalMoney();
+
+        // Add total money to UI
+        UICtrl.showTotalMoney(totalMoney);
+
+        UICtrl.clearEditState();
+
+        // Clear A ui Input
+        UICtrl.clearInputState();
 
     }
 
@@ -304,10 +472,14 @@ const App = (function(ItemCtrl, UICtrl){
 
             // Add total money to UI
             UICtrl.showTotalMoney(totalMoney);
+            
+    
          }
+
+        
        }
     }
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, UICtrl, StorageCtrl);
 
 App.start();
 

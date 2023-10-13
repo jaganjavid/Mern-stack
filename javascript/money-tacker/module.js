@@ -1,37 +1,23 @@
 
 
 const module1 = (function(){
-
-    // Private
-    const nameModule = "Module 1";
-
-    // Pub
+    const apple = true;
 
     return {
-        nameModule
+        apple
     }
 
 })();
-
 
 const module2 = (function(){
-
-    // Private
-    const nameModule = "Module 1";
-
-    // Pub
+    const apple = true;
 
     return {
-        nameModule
+        apple
     }
 
 })();
 
-// window
-
-// console.log(nameModule);
-
-console.log(module1.nameModule);
-console.log(module2.nameModule);
-
+console.log(module1.apple = false);
+console.log(module2);
 
