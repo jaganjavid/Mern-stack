@@ -5,11 +5,10 @@ const Header = ({ text, bgColor, color}) => {
   const headerStyles = {
     backgroundColor: bgColor,
     textColor: color
-}  
+  }  
 
   return (
     <div style={headerStyles}>
-
         <div>{text}</div>
     </div>
   )
