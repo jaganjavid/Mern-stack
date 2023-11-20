@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import Card from './shared/Card'
+import React, { useState } from 'react';
+import { FaTimes } from "react-icons/fa";
+import Card from './shared/Card';
 
-const FeedbackItem = ({item}) => {
+const FeedbackItem = ({item, handleDelete}) => {
 
     // Component state
     // const [rating, setRating] = useState(1);
@@ -11,6 +12,9 @@ const FeedbackItem = ({item}) => {
   return (
     <Card>
        <div className='num-display'>{item.rating}</div>
+       <button className='close' onClick={() => handleDelete(item.id)}>
+         <FaTimes color='red'/>
+       </button>
        <div className='text-display'>{item.text}</div>
     </Card>
   )
