@@ -4,6 +4,7 @@ import FeedbackList from './components/FeedbackList';
 import FeedbackStatus from './components/FeedbackStatus';
 import FeedbackForm from './components/FeedbackForm';
 import { v4 as uuidv4 } from 'uuid';
+import { FeedbackProvider } from './context/FeedbackContext';
 
 const App = () => {
 
@@ -38,14 +39,14 @@ const addfeedback = (newFeedback) => {
  }
 
   return (
-    <>
+    <FeedbackProvider>
       <Header/>
       <div className='container'>
          <FeedbackForm handleAdd={addfeedback}/>
          <FeedbackStatus feedback={feedback}/>
-         <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
+         <FeedbackList handleDelete={deleteFeedback} />
       </div>
-    </>
+    </FeedbackProvider>
   )
 }
 
