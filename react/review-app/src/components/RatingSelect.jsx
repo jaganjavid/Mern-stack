@@ -12,6 +12,9 @@ const RatingSelect = ({select}) => {
     
 
   return (
+    <>
+
+    <input type="text" placeholder='enter you name' />    
     <ul className='rating'> 
         <li>
             <input type="radio" 
@@ -101,9 +104,10 @@ const RatingSelect = ({select}) => {
             value={10}
             checked={selected === 10}
             onChange={handleChange}/>
-            <label htmlFor={"num10"}>10</label>
-        </li>
+                <label htmlFor={"num10"}>10</label>
+            </li>
     </ul>
+    </>
   )
 }
 

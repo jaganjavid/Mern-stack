@@ -4,6 +4,7 @@ const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({children}) => {
 
+
     const [feedback, setFeedback] = useState([
         {
             id:1,
@@ -22,8 +23,15 @@ export const FeedbackProvider = ({children}) => {
           },
     ])
 
+    const deleteFeedback = (id)  => {
+      if(window.confirm("Are you sure")){
+        setFeedback(feedback.filter((item) => item.id !== id));
+      }
+    }
+   
     return <FeedbackContext.Provider value={{
         feedback: feedback,
+        deleteFeedback
     }}>
       {children}
     </FeedbackContext.Provider>

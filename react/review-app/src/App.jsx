@@ -32,19 +32,15 @@ const addfeedback = (newFeedback) => {
   console.log(feedback);
 }
 
- const deleteFeedback = (id)  => {
-   if(window.confirm("Are you sure")){
-     setFeedback(feedback.filter((item) => item.id !== id));
-   }
- }
+ 
 
   return (
     <FeedbackProvider>
       <Header/>
       <div className='container'>
          <FeedbackForm handleAdd={addfeedback}/>
-         <FeedbackStatus feedback={feedback}/>
-         <FeedbackList handleDelete={deleteFeedback} />
+         <FeedbackStatus/>
+         <FeedbackList/>
       </div>
     </FeedbackProvider>
   )
