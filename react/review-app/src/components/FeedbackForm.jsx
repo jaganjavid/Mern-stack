@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, useContext} from "react";
 import Card from "./shared/Card"
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
+import FeedbackContext from '../context/FeedbackContext';
 
 
 
 
-const FeedbackForm = ({handleAdd}) => {
+const FeedbackForm = () => {
+
+  const { addfeedback } = useContext(FeedbackContext);
 
   const [text, setText] = useState("");  
-  const [rating, setRating] = useState(10);
+  const [rating, setRating] = useState(0);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState('');
 
@@ -38,7 +41,7 @@ const FeedbackForm = ({handleAdd}) => {
         rating
       }
 
-      handleAdd(newFeedback);
+      addfeedback(newFeedback);
 
       setText("");
       setRating(0);
@@ -48,9 +51,6 @@ const FeedbackForm = ({handleAdd}) => {
   return (
     <Card>
         <h1>Add you Feedback</h1>
-
-        <h2>{text}</h2>
-        <h3>{rating}</h3>
 
        <form onSubmit={handleSubmit}>
         <RatingSelect select={(rating) => setRating(rating)}/>

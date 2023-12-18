@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const RatingSelect = ({select}) => {
 
-    const [selected, setSlected] = useState(10);
+    const [selected, setSlected] = useState(0);
     
     const handleChange = (e) => {
       setSlected(+e.target.value)
@@ -12,9 +12,7 @@ const RatingSelect = ({select}) => {
     
 
   return (
-    <>
-
-    <input type="text" placeholder='enter you name' />    
+    <>   
     <ul className='rating'> 
         <li>
             <input type="radio" 
