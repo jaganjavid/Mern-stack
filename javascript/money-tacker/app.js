@@ -1,74 +1,6 @@
 
 // STORAGE CONTROLLER, ITEM CONTROLLER, UI CONTROLLER
 
-// STORAGE CONTROLLER
-
-// const StorageCtrl = (function(){
-
-//     return {
-//         storeItem: function(item){
-//             let items;
-
-//             // Check if any items in LS
-//             if(localStorage.getItem("items") === null){
-//                items = [];
-
-//                console.log("Step-1")
-
-//             } else {
-//                 // Get the existing data from ls
-//                 items = JSON.parse(localStorage.getItem("items"));
-//                 console.log("Step-2")
-//             }
-
-//             // Push the new item
-//             items.push(item);
-
-//             // Set the Ls
-//             localStorage.setItem("items", JSON.stringify(items));
-
-//         },
-//         getItems: function(){
-//             let items;
-
-//             // Check if any items in LS
-//             if(localStorage.getItem("items") === null){
-//                 items = [];
-//             }else {
-//                 // Get the existing data from ls
-//                 items = JSON.parse(localStorage.getItem("items"));
-//             } 
-
-//             return items;
-
-//         },
-//         updateItemLs: function(updatedItem){
-//           // Get the existing data from ls
-//           const items = JSON.parse(localStorage.getItem("items"));
-
-//           items.forEach(function(item, index){
-//              if(updatedItem.id === item.id){
-//                 items.splice(index, 1, updatedItem);
-//              }
-//           })
-
-//           localStorage.setItem("items", JSON.stringify(items));
-//         },
-//         deleteItemLs: function(id){
-//             // Get the existing data from ls
-//           const items = JSON.parse(localStorage.getItem("items"));
-
-//           items.forEach(function(item, index){
-//             if(id === item.id){
-//                 items.splice(index, 1);
-//             }
-//           })
-
-//           localStorage.setItem("items", JSON.stringify(items));
-//         }
-//     }
-// })();
-
 const StorageCtrl = (function () {
     // Private methods
     function getItemsFromLocalStorage() {
@@ -109,9 +41,11 @@ const ItemCtrl = (function(){
         this.id = id;
         this.name = name;
         this.money = money;
+        this.dateAdded = new Date().toLocaleDateString();; // Current date and time when the item is added
+        this.lastModified = new Date().toLocaleDateString();; // Initially set to the creation time
     }
 
-    // Data Struture 
+    // Data Struture or state
 
     const data = {
         // items: [
@@ -195,6 +129,7 @@ const ItemCtrl = (function(){
             if(item.id === data.currentItem.id){
                 item.name = name;
                 item.money = money;
+                item.lastModified = new Date();
                 found = item;
             }
           })
@@ -221,6 +156,8 @@ const ItemCtrl = (function(){
 
 
 const UICtrl = (function(){
+
+    let categoryChart;
 
     return {
         populateItemList: function(items){
@@ -271,7 +208,7 @@ const UICtrl = (function(){
         li.id = `item-${item.id}`;
 
         // Insert HTML
-        li.innerHTML = `<strong>${item.name} : <em>${item.money} $</em></strong>
+        li.innerHTML = `<strong>${item.name} : <em>${item.money} $</em> Date - ${item.dateAdded}</strong>
         <a href="#" class="secondary-content edit-item">
             <i class="fa fa-pencil"></i>
         </a>`;
@@ -299,7 +236,7 @@ const UICtrl = (function(){
 
               const li = document.querySelector(`#${itemID}`);
               
-              li.innerHTML = `<strong>${item.name} : <em>${item.money} $</em></strong>
+              li.innerHTML = `<strong>${item.name} : <em>${item.money} $</em> Date - ${item.lastModified}</strong>
               <a href="#" class="secondary-content edit-item">
                   <i class="fa fa-pencil"></i>
               </a>`
@@ -311,6 +248,88 @@ const UICtrl = (function(){
             const itemID = `#item-${id}`;
             const item = document.querySelector(itemID);
             item.remove();
+        },
+        validateInput:function(input){
+            const name = input.name.trim();
+            const money = input.money.trim();
+
+            // Check if name and money are not empty
+            if (name === '' || money === '') {
+                alert('Please fill out all fields.');
+                return false;
+            }
+
+            // Check if money is a positive number
+            if (!/^[1-9]\d*$/.test(money)) {
+                alert('Money must be a positive number.');
+                return false;
+            }
+
+            // Validation passed
+            return true;
+        },
+        filterItems: function(searchText, filterBy) {
+            // Get items from the data controller
+            const items = ItemCtrl.getItems();
+
+            // Filter items based on searchText and filterBy (name or money)
+            const filteredItems = items.filter(function(item) {
+                if (filterBy === 'name') {
+                    return item.name.toLowerCase().includes(searchText.toLowerCase());
+                } else if (filterBy === 'money') {
+                    return item.money.toString().includes(searchText);
+                }
+            });
+
+            // Update the UI with filtered items
+            UICtrl.populateItemList(filteredItems);
+
+            // Hide or show items based on filter
+            const listItems = document.querySelectorAll('.collection-item');
+            listItems.forEach(function(item) {
+                const itemId = item.id.split('-')[1]; // Extract item ID from element ID
+                if (filteredItems.some(filteredItem => filteredItem.id === parseInt(itemId))) {
+                    item.classList.remove('hidden'); // Show items that match the filter
+                } else {
+                    item.classList.add('hidden'); // Hide items that do not match the filter
+                }
+            });
+        },
+        renderCategoryChart: function(categoriesTotal){
+            const ctx = document.getElementById('category-chart').getContext('2d');
+
+            if (categoryChart) {
+                categoryChart.destroy(); // Destroy the existing chart if it exists
+            }
+
+            categoryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(categoriesTotal),
+                    datasets: [{
+                        label: 'Total Money Spent',
+                        data: Object.values(categoriesTotal),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         }
 
 
@@ -335,6 +354,20 @@ const App = (function(ItemCtrl, UICtrl, StorageCtrl){
         // Delete Item Event
         document.querySelector(".delete-btn").addEventListener("click", itemDeleteSubmit);
 
+        // Filter items event listener
+        document.querySelector('#search').addEventListener('input', function(e){
+            console.log("Hello")
+            const searchText = e.target.value;
+            const filterBy = document.querySelector('input[name="filter"]:checked').value;
+
+            if (filterBy === 'money' && isNaN(searchText)) {
+                // Clear the input if non-numeric value is entered when filtering by money
+                e.target.value = '';
+                return;
+            }
+            UICtrl.filterItems(searchText, filterBy);
+        });
+
         
     }
 
@@ -346,10 +379,7 @@ const App = (function(ItemCtrl, UICtrl, StorageCtrl){
 
         // Validate
 
-        if(input.name === "" || input.money === ""){
-            alert("Please fill all the fileds");
-        } else{
-            
+        if(UICtrl.validateInput(input)){
             // Add Item
             const newItem = ItemCtrl.addItem(input.name, input.money);
 
@@ -469,6 +499,8 @@ const App = (function(ItemCtrl, UICtrl, StorageCtrl){
             
             // GET TOTAL MONEY
             const totalMoney = ItemCtrl.getTotalMoney();
+
+            UICtrl.renderCategoryChart(totalMoney);
 
             // Add total money to UI
             UICtrl.showTotalMoney(totalMoney);

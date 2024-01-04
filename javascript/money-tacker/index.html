@@ -8,6 +8,11 @@
      <!-- Compiled and minified CSS -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
      
+     <style>
+        .hidden{
+            display: none;
+        }
+     </style>
 </head>
 <body>
 
@@ -61,12 +66,34 @@
 
        <!-- Total Count -->
 
-       <h3 class="center-align">Total Money - <span class="total-money">
-           0
-       </span></h3>
-
+       <h3 class="center-align">Total Money - <span class="total-money">0</span></h3>
        <div>
-        <input type="text" placeholder="search">
+
+        
+        <div class="row">
+           <div class="col s3">
+            <p>
+                <label>
+                  <input name="filter" value="name" type="radio" checked />
+                  <span>Name</span>
+                </label>
+              </p>
+             
+           </div>
+           <div class="col s3">
+            <p>
+                <label>
+                  <input name="filter" value="money" type="radio" />
+                  <span>Money</span>
+                </label>
+              </p>
+           </div>
+
+           <div class="col s6">
+            <input type="text" id="search" placeholder="Search...">
+           </div>
+        </div>
+        
     </div>
 
 
@@ -78,10 +105,14 @@
             </a>
           </li>  -->
        </ul>
+
+       <canvas id="category-chart" width="400" height="200"></canvas>
     </div>
     
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./app.js"></script>
+    
 </body>
 </html>
 

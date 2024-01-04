@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const RatingSelect = ({select}) => {
 
-    const [selected, setSlected] = useState(0);
-    
+    const [selected, setSelected] = useState(0);
+
+    useEffect(() => {
+        select(selected); // Call the select function whenever 'selected' changes
+      }, [selected]);   
+
     const handleChange = (e) => {
-      setSlected(+e.target.value)
-      select(+e.target.value);
-    }
+        const selectedRating = +e.target.value;
+        setSelected(selectedRating);
+    };
+
 
     
 

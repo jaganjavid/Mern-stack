@@ -17,45 +17,62 @@ const FeedbackForm = () => {
   const [message, setMessage] = useState('');
 
   const handleTextChange = (e) => {
-
-    if(text === ""){
-      setBtnDisabled(true);
-      setMessage(null);
-    } else if(text !== "" && text.trim().length <= 10){
-      setMessage("Text must be at least 10 chatacters");
-      setBtnDisabled(true);
-    } else{
-      setMessage(null);
-      setBtnDisabled(false);
+    const trimmedText = e.target.value.trim();
+    
+    let textError = "";
+    let ratingError = "";
+  
+    if (trimmedText === "") {
+      textError = "Feedback cannot be empty";
+    } else if (trimmedText.length < 10) {
+      textError = "Feedback must be at least 10 characters";
     }
+  
+    setMessage(textError || ratingError); // Update the message based on text
+    setBtnDisabled(!!(textError || ratingError)); // Update button disable/enable based on errors
+  
+    setText(trimmedText);
+  };
 
-    setText(e.target.value);
-  }  
+  const handleRatingChange = (selectedRating) => {
+    setRating(selectedRating);
+  
+    let ratingError = "";
+  
+    if (selectedRating === 0) {
+      ratingError = "Please select a rating";
+    }
+  
+    setMessage(ratingError); // Update the message based on rating
+    setBtnDisabled(!!ratingError); // Update button disable/enable based on rating error
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if(text.trim().length > 10){
-      const newFeedback = {
-        text,
-        rating
-      }
-
+  
+    const textError = text.trim().length < 10 ? "Feedback must be at least 10 characters" : "";
+    const ratingError = rating === 0 ? "Please select a rating" : "";
+  
+    if (!textError && !ratingError) {
+      const newFeedback = { text, rating };
       addfeedback(newFeedback);
-
+  
       setText("");
       setRating(0);
+      setMessage("Feedback submitted successfully!");
+    } else {
+      setMessage(textError || ratingError); 
     }
-  }
+  };
 
   return (
     <Card>
         <h1>Add you Feedback</h1>
 
        <form onSubmit={handleSubmit}>
-        <RatingSelect select={(rating) => setRating(rating)}/>
+        <RatingSelect select={handleRatingChange}/>
         <div className="input-group">
-            <input type="text" placeholder="Write you feedback" value={text} onChange={handleTextChange}/>
+            <input type="text" placeholder="Write you feedback" value={text} onChange={handleTextChange} disabled={rating === 0 ? true : false}/>
             <Button type="submit" isDisabled={btnDisabled}>
                 Send
             </Button>
